@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BMI Kalkulyator</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f0f8ff;
+      padding: 20px;
+      text-align: center;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    input {
+      padding: 10px;
+      margin: 10px;
+      width: 80%;
+      max-width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>BMI Kalkulyator</h1>
+  <input type="number" id="height" placeholder="Boy (sm)" required>
+  <input type="number" id="weight" placeholder="Çəki (kq)" required>
+  <br>
+  <button onclick="calculateBMI()">Hesabla</button>
+  <div id="result"></div>
+
+  <script>
+    function calculateBMI() {
+      const height = parseFloat(document.getElementById('height').value) / 100;
+      const weight = parseFloat(document.getElementById('weight').value);
+
+      if (!height || !weight) {
+        document.getElementById('result').innerText = 'Zəhmət olmasa bütün xanaları doldurun.';
+        return;
+      }
+
+      const bmi = weight / (height * height);
+      let status = '';
+
+      if (bmi < 18.5) status = 'Aşağı çəki';
+      else if (bmi < 24.9) status = 'Normal çəki';
+      else if (bmi < 29.9) status = 'Artıq çəki';
+      else status = 'Piylənmə';
+
+      document.getElementById('result').innerText = `BMI: ${bmi.toFixed(2)} - ${status}`;
+    }
+  </script>
+</body>
+</html>
